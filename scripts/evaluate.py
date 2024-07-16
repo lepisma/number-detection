@@ -1,12 +1,12 @@
 """
-Evaluate performance of transcription done using Skit's Speech LLM 2B model
+Evaluate performance of transcriptions.
 
 Usage:
-  evaluate-speech-llm.py <truth-csv> <transcriptions-csv>
+  evaluate.py <truth-csv> <transcriptions-csv>
 
 Arguments:
   <truth-csv>                Truth file from the skit dataset
-  <transcriptions-csv>       Transcription from the transcription script
+  <transcriptions-csv>       Transcription from the transcription scripts
 """
 
 import json
