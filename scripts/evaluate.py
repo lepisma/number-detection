@@ -59,9 +59,9 @@ if __name__ == "__main__":
     ser = np.mean([w != 0 for w in wers])
 
     if args["--debug"]:
-        for ref_text, hyp_text, wer in zip(ref, hyp, wers):
+        for (fid, _), ref_text, hyp_text, wer in zip(pred, ref, hyp, wers):
             if wer != 0:
-                print(f"Error:: ref: {ref_text}, hyp: {hyp_text}")
+                print(f"Error in {fid}:: ref: {ref_text}, hyp: {hyp_text}")
 
     print(f"SER: {ser}")
     print(f"Mean WER: {np.mean(wers)}")
