@@ -23,15 +23,15 @@ separate word before WER calculation.
 To reproduce, assuming you have extracted the dataset in ~./data~,
 
 #+begin_src shell
-    # You will need to install torch and torchaudio in the venv first
-    poetry run python scripts/transcribe-speech-llm.py ./data/single-turn-dataset/data --output-csv=output-speech-llm.csv
+  # You will need to install torch and torchaudio (in the poetry venv) along with general poetry install
+  poetry run python scripts/transcribe.py speechllm ./data/single-turn-dataset/data --output-csv=output-speech-llm.csv
 
-    # You will need to set up DEEPGRAM_API_KEY
-    # As of now, you have to change the model call parameters in the script itself
-    poetry run python scripts/transcribe-deepgram.py ./data/single-turn-dataset/data --output-csv=output-dg-prerecorded.csv
+  # Set up DEEPGRAM_API_KEY for this
+  poetry run python scripts/transcribe.py deepgram ./data/single-turn-dataset/data --output-csv=output-dg-prerecorded.csv
+  poetry run python scripts/transcribe.py whisper ./data/single-turn-dataset/data --output-csv=output-whisper.csv
 
-    poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-speech-llm.csv
-    poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-dg-prerecorded.csv
+  # Replace the file you want to evaluate
+  poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-dg-prerecorded.csv
 #+end_src
 
 * Two Turns
