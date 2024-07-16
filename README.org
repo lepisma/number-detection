@@ -1,3 +1,12 @@
 #+TITLE: number-detection
 
 Short evaluation of number detection performance on [[https://github.com/skit-ai/phone-number-entity-dataset][phone-number-entity-dataset]].
+
+* Single Turn
+
+|---------------------------+---------------------------------+------+------------+----------|
+| Model                     | Model Spec                      |  SER | Median WER | Mean WER |
+|---------------------------+---------------------------------+------+------------+----------|
+| [[https://github.com/skit-ai/SpeechLLM/tree/f44d361277ae5e2fa687b39f861f630ca2571318][Speech LLM 2B - Offline]]   | NA                              | 0.81 |       0.20 |     1.56 |
+| Deepgram Nova-2 - Offline | General, en-IN, smart format on | 0.47 |        0.0 |     0.24 |
+|---------------------------+---------------------------------+------+------------+----------|

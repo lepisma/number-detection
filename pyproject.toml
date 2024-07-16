@@ -13,6 +13,7 @@ tqdm = "^4.66.4"
 pandas = "^2.2.2"
 word2number = "^1.1"
 werpy = "^2.1.2"
+deepgram-sdk = ">=3,<4.0"
 
 
 [tool.poetry.group.dev.dependencies]
