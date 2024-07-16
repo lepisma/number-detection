@@ -11,24 +11,27 @@ detection for full number pattern.
 WER roughly maps to CER (Character Error Rate) since we normalize each digit as
 separate word before WER calculation.
 
-|---------------------------+---------------------------------+------+------------+----------|
-| Model                     | Model Spec                      |  SER | Median WER | Mean WER |
-|---------------------------+---------------------------------+------+------------+----------|
-| [[https://github.com/skit-ai/SpeechLLM/tree/f44d361277ae5e2fa687b39f861f630ca2571318][Speech LLM 2B - Offline]]   | NA                              | 0.81 |       0.20 |     1.56 |
-| Deepgram Nova-2 - Offline | General, en-IN, smart format on | 0.47 |        0.0 |     0.24 |
-|---------------------------+---------------------------------+------+------------+----------|
+|---------------------------+---------------------------------+--------+------------+----------|
+| Model                     | Model Spec                      |    SER | Median WER | Mean WER |
+|---------------------------+---------------------------------+--------+------------+----------|
+| [[https://github.com/skit-ai/SpeechLLM/tree/f44d361277ae5e2fa687b39f861f630ca2571318][Speech LLM 2B - Offline]]   | NA                              | 0.8082 |       0.20 |   1.5572 |
+| Deepgram Nova-2 - Offline | General, en-IN, smart format on | 0.4726 |        0.0 |   0.2377 |
+| Deepgram Nova-2 - Offline | Phonecall, en, smart format on  | 0.4452 |        0.0 |   0.2350 |
+| Whisper Large v3          |                                 | 0.3972 |        0.0 |      0.3 |
+|---------------------------+---------------------------------+--------+------------+----------|
 
 To reproduce, assuming you have extracted the dataset in ~./data~,
 
 #+begin_src shell
-  # You will need to install torch and torchaudio in the venv first
-  poetry run python scripts/transcribe-speech-llm.py ./data/single-turn-dataset/data --output-csv=output-speech-llm.csv
+    # You will need to install torch and torchaudio in the venv first
+    poetry run python scripts/transcribe-speech-llm.py ./data/single-turn-dataset/data --output-csv=output-speech-llm.csv
 
-  # You will need to set up DEEPGRAM_API_KEY
-  poetry run python scripts/transcribe-deepgram.py ./data/single-turn-dataset/data --output-csv=output-dg-prerecorded.csv
+    # You will need to set up DEEPGRAM_API_KEY
+    # As of now, you have to change the model call parameters in the script itself
+    poetry run python scripts/transcribe-deepgram.py ./data/single-turn-dataset/data --output-csv=output-dg-prerecorded.csv
 
-  poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-speech-llm.csv
-  poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-dg-prerecorded.csv
+    poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-speech-llm.csv
+    poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-dg-prerecorded.csv
 #+end_src
 
 * Two Turns
