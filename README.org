@@ -15,9 +15,9 @@ separate word before WER calculation.
 | Model                     | Model Spec                      |    SER | Median WER | Mean WER |
 |---------------------------+---------------------------------+--------+------------+----------|
 | [[https://github.com/skit-ai/SpeechLLM/tree/f44d361277ae5e2fa687b39f861f630ca2571318][Speech LLM 2B - Offline]]   | NA                              | 0.8082 |       0.20 |   1.5572 |
-| Deepgram Nova-2 - Offline | General, en-IN, smart format on | 0.4726 |        0.0 |   0.2377 |
-| Deepgram Nova-2 - Offline | Phonecall, en, smart format on  | 0.4452 |        0.0 |   0.2350 |
-| Whisper Large v3          |                                 | 0.3972 |        0.0 |      0.3 |
+| Deepgram Nova-2 - Offline | General, en-IN, smart format on | 0.4658 |        0.0 |   0.2364 |
+| Deepgram Nova-2 - Offline | Phonecall, en, smart format on  | 0.4384 |        0.0 |   0.2336 |
+| Whisper Large v3          |                                 | 0.3973 |        0.0 |      0.3 |
 |---------------------------+---------------------------------+--------+------------+----------|
 
 To reproduce, assuming you have extracted the dataset in ~./data~,

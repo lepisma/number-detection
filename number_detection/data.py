@@ -27,6 +27,7 @@ def normalize(text: str) -> str:
     _text = " ".join(_words)
 
     _text = re.sub(r"double (\d)", lambda m: m[1] + " " + m[1], _text, flags=re.I)
+    _text = re.sub(r"triple (\d)", lambda m: m[1] + " " + m[1] + " " + m[1], _text, flags=re.I)
 
     _text = re.sub(r"(\d)", r"\1 ", _text).strip()
     _text = re.sub(r"\s+", " ", _text).strip()
