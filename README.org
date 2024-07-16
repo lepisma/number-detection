@@ -20,9 +20,8 @@ separate word before WER calculation.
 | Whisper Large v3 - Offline |                                 | 0.3973 |        0.0 |      0.3 |
 |----------------------------+---------------------------------+--------+------------+----------|
 
-> [!NOTE]
-> All the models above are used in offline mode which will have generally better
-> performance than streaming systems. Streaming numbers will be added later.
+All the models above are used in offline mode which will have generally better
+performance than streaming systems. Streaming numbers will be added later.
 
 To reproduce, assuming you have extracted the dataset in ~./data~,
 
