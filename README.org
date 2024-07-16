@@ -11,14 +11,18 @@ detection for full number pattern.
 WER roughly maps to CER (Character Error Rate) since we normalize each digit as
 separate word before WER calculation.
 
-|---------------------------+---------------------------------+--------+------------+----------|
-| Model                     | Model Spec                      |    SER | Median WER | Mean WER |
-|---------------------------+---------------------------------+--------+------------+----------|
-| [[https://github.com/skit-ai/SpeechLLM/tree/f44d361277ae5e2fa687b39f861f630ca2571318][Speech LLM 2B - Offline]]   | NA                              | 0.8082 |       0.20 |   1.5572 |
-| Deepgram Nova-2 - Offline | General, en-IN, smart format on | 0.4658 |        0.0 |   0.2364 |
-| Deepgram Nova-2 - Offline | Phonecall, en, smart format on  | 0.4384 |        0.0 |   0.2336 |
-| Whisper Large v3          |                                 | 0.3973 |        0.0 |      0.3 |
-|---------------------------+---------------------------------+--------+------------+----------|
+|----------------------------+---------------------------------+--------+------------+----------|
+| Model                      | Model Spec                      |    SER | Median WER | Mean WER |
+|----------------------------+---------------------------------+--------+------------+----------|
+| [[https://github.com/skit-ai/SpeechLLM/tree/f44d361277ae5e2fa687b39f861f630ca2571318][Speech LLM 2B - Offline]]    | NA                              | 0.8082 |       0.20 |   1.5572 |
+| Deepgram Nova-2 - Offline  | General, en-IN, smart format on | 0.4658 |        0.0 |   0.2364 |
+| Deepgram Nova-2 - Offline  | Phonecall, en, smart format on  | 0.4384 |        0.0 |   0.2336 |
+| Whisper Large v3 - Offline |                                 | 0.3973 |        0.0 |      0.3 |
+|----------------------------+---------------------------------+--------+------------+----------|
+
+> [!NOTE]
+> All the models above are used in offline mode which will have generally better
+> performance than streaming systems. Streaming numbers will be added later.
 
 To reproduce, assuming you have extracted the dataset in ~./data~,
 
