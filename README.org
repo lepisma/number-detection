@@ -3,6 +3,11 @@
 Short evaluation of number detection performance on [[https://github.com/skit-ai/phone-number-entity-dataset][phone-number-entity-dataset]].
 
 * Single Turn
+SER (Sentence Error Rate) is the primary metric telling the quality of one shot
+detection for full number pattern.
+
+WER roughly maps to CER (Character Error Rate) since we normalize each digit as
+separate word before WER calculation.
 
 |---------------------------+---------------------------------+------+------------+----------|
 | Model                     | Model Spec                      |  SER | Median WER | Mean WER |
@@ -10,3 +15,16 @@ Short evaluation of number detection performance on [[https://github.com/skit-ai
 | [[https://github.com/skit-ai/SpeechLLM/tree/f44d361277ae5e2fa687b39f861f630ca2571318][Speech LLM 2B - Offline]]   | NA                              | 0.81 |       0.20 |     1.56 |
 | Deepgram Nova-2 - Offline | General, en-IN, smart format on | 0.47 |        0.0 |     0.24 |
 |---------------------------+---------------------------------+------+------------+----------|
+
+To reproduce, assuming you have extracted the dataset in ~./data~,
+
+#+begin_src shell
+  # You will need to install torch and torchaudio in the venv first
+  poetry run python scripts/transcribe-speech-llm.py ./data/single-turn-dataset/data --output-csv=output-speech-llm.csv
+
+  # You will need to set up DEEPGRAM_API_KEY
+  poetry run python scripts/transcribe-deepgram.py ./data/single-turn-dataset/data --output-csv=output-dg-prerecorded.csv
+
+  poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-speech-llm.csv
+  poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-dg-prerecorded.csv
+#+end_src
