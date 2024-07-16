@@ -1,6 +1,8 @@
 #+TITLE: number-detection
 
-Short evaluation of number detection performance on [[https://github.com/skit-ai/phone-number-entity-dataset][phone-number-entity-dataset]].
+Short evaluation of number detection performance on [[https://github.com/skit-ai/phone-number-entity-dataset][phone-number-entity-dataset]]
+for a few ASR systems. The dataset has simple utterances but in India English
+which should show up some challenges with various ASR systems.
 
 * Single Turn
 SER (Sentence Error Rate) is the primary metric telling the quality of one shot
@@ -28,3 +30,6 @@ To reproduce, assuming you have extracted the dataset in ~./data~,
   poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-speech-llm.csv
   poetry run python scripts/evaluate.py ./data/single-turn-dataset/single-turn-data.csv ./output-dg-prerecorded.csv
 #+end_src
+
+* Two Turns
+~NA~
