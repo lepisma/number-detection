@@ -116,7 +116,11 @@ class SpeechLLMTranscriber(Transcriber):
         m = re.search(r"\"Transcript\": \"(.*)\"", output)
         if m:
             transcript = m.groups()[0]
-            return [[{"confidence": 1.0, "transcript": transcript}]]
+
+            if transcript == "__unknown__":
+                return []
+            else:
+                return [[{"confidence": 1.0, "transcript": transcript}]]
         else:
             return []
 
