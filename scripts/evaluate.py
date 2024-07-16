@@ -13,16 +13,12 @@ Options:
 """
 
 import json
-import os
-import re
-from glob import glob
 
 import numpy as np
 import pandas as pd
 import werpy
 from docopt import docopt
 from number_detection.data import normalize
-from tqdm import tqdm
 
 
 def process_utterance(raw: str) -> str:
