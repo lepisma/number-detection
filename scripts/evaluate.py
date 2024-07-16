@@ -2,11 +2,14 @@
 Evaluate performance of transcriptions.
 
 Usage:
-  evaluate.py <truth-csv> <transcriptions-csv>
+  evaluate.py <truth-csv> <transcriptions-csv> [--debug]
 
 Arguments:
   <truth-csv>                Truth file from the skit dataset
   <transcriptions-csv>       Transcription from the transcription scripts
+
+Options:
+  --debug                    Print non-matching cases
 """
 
 import json
@@ -54,6 +57,11 @@ if __name__ == "__main__":
     wers = werpy.wers(ref, hyp)
 
     ser = np.mean([w != 0 for w in wers])
+
+    if args["--debug"]:
+        for ref_text, hyp_text, wer in zip(ref, hyp, wers):
+            if wer != 0:
+                print(f"Error:: ref: {ref_text}, hyp: {hyp_text}")
 
     print(f"SER: {ser}")
     print(f"Mean WER: {np.mean(wers)}")
