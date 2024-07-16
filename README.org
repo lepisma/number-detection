@@ -1,8 +1,8 @@
 #+TITLE: number-detection
 
 Short evaluation of number detection performance on [[https://github.com/skit-ai/phone-number-entity-dataset][phone-number-entity-dataset]]
-for a few ASR systems. The dataset has simple utterances but in India English
-which should show up some challenges with various ASR systems.
+for a few ASR systems. The dataset has simple utterances but in Indian English
+which should show up some challenges.
 
 * Single Turn
 SER (Sentence Error Rate) is the primary metric telling the quality of one shot
