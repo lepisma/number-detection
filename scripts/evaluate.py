@@ -34,6 +34,13 @@ def process_utterance(raw: str) -> str:
     return data[0][0]["transcript"]
 
 
+def process_truth(label) -> str:
+    try:
+        return " ".join(str(int(label)))
+    except ValueError:
+        return ""
+
+
 if __name__ == "__main__":
     args = docopt(__doc__)
 
@@ -42,7 +49,7 @@ if __name__ == "__main__":
 
     # Mapping from filename to string transcription in normalized form
     truth_mapping = {
-        it.relative_path.split("/")[1]: " ".join(str(int(it.tags)))
+        it.relative_path.split("/")[1]: process_truth(it.tags)
         for _, it in truth.iterrows()
     }
 
@@ -54,7 +61,16 @@ if __name__ == "__main__":
     ref = [truth_mapping[fid] for fid, _ in pred]
     hyp = [txt for _, txt in pred]
 
-    wers = werpy.wers(ref, hyp)
+
+    wers = []
+
+    for r, h in zip(ref, hyp):
+        # There is one case where the reference is empty, if that's the case, just move ahead.
+        if r == h == "":
+            wers.append(0.0)
+            continue
+
+        wers.append(werpy.wer(r, h))
 
     ser = np.mean([w != 0 for w in wers])
 
