@@ -66,7 +66,14 @@ if __name__ == "__main__":
             wers.append(0.0)
             continue
 
-        wers.append(werpy.wer(r, h))
+        try:
+            wers.append(werpy.wer(r, h))
+        except:
+            # For the single reference that's empty (and the hyp is not) we
+            # swap arguments and calculate. 0 length ref should be handled by
+            # the library.
+            wers.append(werpy.wer(h, r))
+
 
     ser = np.mean([w != 0 for w in wers])
 

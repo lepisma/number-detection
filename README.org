@@ -4,6 +4,10 @@ Short evaluation of number detection performance on [[https://github.com/skit-ai
 for a few ASR systems. The dataset has simple utterances but in Indian English
 which should show up some challenges.
 
+The dataset above has significant label noise. For this experiment, I fixed the
+labels (only for the single turn dataset) manually and have added the corrected
+label file in this repository.
+
 * Single Turn
 SER (Sentence Error Rate) is the primary metric telling the quality of one shot
 detection for full number pattern.
@@ -14,10 +18,10 @@ separate word before WER calculation.
 |----------------------------+---------------------------------+--------+------------+----------|
 | Model                      | Model Spec                      |    SER | Median WER | Mean WER |
 |----------------------------+---------------------------------+--------+------------+----------|
-| [[https://github.com/skit-ai/SpeechLLM/tree/f44d361277ae5e2fa687b39f861f630ca2571318][Speech LLM 2B - Offline]]    | NA                              | 0.8082 |       0.20 |   1.5572 |
-| Deepgram Nova-2 - Offline  | General, en-IN, smart format on | 0.4658 |        0.0 |   0.2364 |
-| Deepgram Nova-2 - Offline  | Phonecall, en, smart format on  | 0.4384 |        0.0 |   0.2336 |
-| Whisper Large v3 - Offline |                                 | 0.3973 |        0.0 |      0.3 |
+| [[https://github.com/skit-ai/SpeechLLM/tree/f44d361277ae5e2fa687b39f861f630ca2571318][Speech LLM 2B - Offline]]    | NA                              | 0.7329 |     0.1111 |   1.4135 |
+| Deepgram Nova-2 - Offline  | General, en-IN, smart format on | 0.1507 |     0.0000 |   0.0230 |
+| Deepgram Nova-2 - Offline  | Phonecall, en, smart format on  | 0.1164 |     0.0000 |   0.0178 |
+| Whisper Large v3 - Offline |                                 | 0.2192 |     0.0000 |   0.1206 |
 |----------------------------+---------------------------------+--------+------------+----------|
 
 All the models above are used in offline mode which will have generally better
