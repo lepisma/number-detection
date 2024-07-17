@@ -108,6 +108,11 @@ class SpeechLLMTranscriber(Transcriber):
         self.model = AutoModel.from_pretrained("skit-ai/speechllm-2B", trust_remote_code=True)
 
     def transcribe(self, audio_path: str):
+        """
+        This might not work really well since the model is trained on 16k
+        audios and we don't know about the robustness to resampling.
+        """
+
         waveform, sr = torchaudio.load(audio_path)
         transform = torchaudio.transforms.Resample(sr, 16_000)
         waveform = transform(waveform)
