@@ -177,5 +177,6 @@ pyrightconfig.json
 /data/*
 !/data/
 !/data/single-turn-data-corrected.csv
+!/data/transcriptions/
 
 /.envrc
