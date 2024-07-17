@@ -15,15 +15,15 @@ detection for full number pattern.
 WER roughly maps to CER (Character Error Rate) since we normalize each digit as
 separate word before WER calculation.
 
-|--------------------+--------------------------+--------+----------|
-| Model              | Model Spec               |    SER | Mean WER |
-|--------------------+--------------------------+--------+----------|
-| Deepgram - Offline | ~nova-2-general~, ~en-IN~    | 0.1507 |   0.0230 |
-| Deepgram - Offline | ~nova-2-phonecall~, ~en~     | 0.1164 |   0.0178 |
-| Whisper - Offline  | ~large-v3~                 | 0.2192 |   0.1206 |
-| Google - Offline   | ~telephony_short~, ~en-IN~ | 0.3973 |   0.0558 |
-| Google - Offline   | ~chirp_2~, ~en-IN~           | *0.0411* |   *0.0048* |
-|--------------------+--------------------------+--------+----------|
+|--------------------+------------------------+--------+----------|
+| Model              | Model Spec             |    SER | Mean WER |
+|--------------------+------------------------+--------+----------|
+| Deepgram - Offline | ~nova-2-general~, ~en-IN~  | 0.1575 |   0.0240 |
+| Deepgram - Offline | ~nova-2-phonecall~, ~en~   | 0.1233 |   0.0188 |
+| Whisper - Offline  | ~large-v3~               | 0.2260 |   0.1216 |
+| Google - Offline   | ~telephony_short~, ~en-IN~ | 0.3973 |   0.0567 |
+| Google - Offline   | ~chirp_2~, ~en-IN~         | *0.0342* |   *0.0037* |
+|--------------------+------------------------+--------+----------|
 
 All the models above are used in offline mode which will have generally better
 performance than streaming systems. Streaming numbers will be added later.

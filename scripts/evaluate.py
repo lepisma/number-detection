@@ -34,15 +34,15 @@ def process_utterance(raw: str) -> str:
 
 def process_truth(label) -> str:
     try:
-        return " ".join(str(int(label)))
-    except ValueError:
+        return " ".join(label.split(".")[0])
+    except (ValueError, AttributeError):
         return ""
 
 
 if __name__ == "__main__":
     args = docopt(__doc__)
 
-    truth = pd.read_csv(args["<truth-csv>"])
+    truth = pd.read_csv(args["<truth-csv>"], dtype={"tags": object})
     pred = pd.read_csv(args["<transcriptions-csv>"])
 
     # Mapping from filename to string transcription in normalized form
