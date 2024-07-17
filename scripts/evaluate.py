@@ -13,6 +13,7 @@ Options:
 """
 
 import json
+import re
 
 import numpy as np
 import pandas as pd
@@ -27,7 +28,8 @@ def process_utterance(raw: str) -> str:
     if not data:
         return ""
 
-    return data[0][0]["transcript"]
+    text = data[0][0]["transcript"]
+    return re.sub(r"<.+>", "", text)
 
 
 def process_truth(label) -> str:
