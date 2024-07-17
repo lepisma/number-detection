@@ -4,6 +4,9 @@ from abc import ABC, abstractmethod
 import torch
 import torchaudio
 from deepgram import DeepgramClient, PrerecordedOptions
+from google.api_core.client_options import ClientOptions
+from google.cloud.speech_v2 import SpeechClient
+from google.cloud.speech_v2.types import cloud_speech
 from transformers import (AutoModel, AutoModelForSpeechSeq2Seq, AutoProcessor,
                           pipeline)
 
@@ -32,6 +35,42 @@ class Transcriber(ABC):
         """
 
         raise NotImplementedError()
+
+
+class GoogleTranscriber(Transcriber):
+
+    def __init__(self, model: str="chirp_2", language: str="en-IN") -> None:
+        super().__init__()
+
+        self.client = SpeechClient(client_options=ClientOptions(
+            api_endpoint="us-central1-speech.googleapis.com"
+        ))
+        self.config = cloud_speech.RecognitionConfig(
+            auto_decoding_config=cloud_speech.AutoDetectDecodingConfig(),
+            language_codes=[language],
+            model=model
+        )
+        self.project_id = "benchmarks-and-analyses"
+
+    def transcribe(self, audio_path: str):
+        with open(audio_path, "rb") as fp:
+            content = fp.read()
+
+        request = cloud_speech.RecognizeRequest(
+            recognizer=f"projects/{self.project_id}/locations/us-central1/recognizers/_",
+            config=self.config,
+            content=content
+        )
+
+        response = self.client.recognize(request=request)
+
+        try:
+            # Only taking top alternative since we are, for now, only comparing
+            # performance on that.
+            top_alt = response.results[0].alternatives[0]
+            return [[{"confidence": 0, "transcript": top_alt.transcript}]]
+        except:
+            return []
 
 
 class DGTranscriber(Transcriber):

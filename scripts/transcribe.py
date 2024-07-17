@@ -3,6 +3,7 @@ Transcribe audio files
 
 Usage:
   transcribe.py deepgram <audio-dir> --output-csv=<output-csv>
+  transcribe.py google <audio-dir> --output-csv=<output-csv>
   transcribe.py speechllm <audio-dir> --output-csv=<output-csv>
   transcribe.py whisper <audio-dir> --output-csv=<output-csv>
 """
@@ -13,8 +14,8 @@ from glob import glob
 
 import pandas as pd
 from docopt import docopt
-from number_detection.models import (DGTranscriber, SpeechLLMTranscriber,
-                                     WhisperTranscriber)
+from number_detection.models import (DGTranscriber, GoogleTranscriber,
+                                     SpeechLLMTranscriber, WhisperTranscriber)
 from tqdm import tqdm
 
 if __name__ == "__main__":
@@ -28,6 +29,8 @@ if __name__ == "__main__":
         t = SpeechLLMTranscriber()
     elif args["whisper"]:
         t = WhisperTranscriber()
+    elif args["google"]:
+        t = GoogleTranscriber()
     else:
         raise ValueError("No transcriber selected")
 
